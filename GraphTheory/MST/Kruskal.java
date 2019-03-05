@@ -78,15 +78,7 @@ class Submission
             from[vfrom] = ufrom;
         }
 
-        public int FindFinalWeight(ArrayList<Edge> e)
-        {
-            int finalWeight = 0;
-            for(int i = 0;i<e.size();i++)
-            {
-                finalWeight = e.get(i).weight + finalWeight;
-            }
-            return finalWeight;
-        }
+
 
     }
 
