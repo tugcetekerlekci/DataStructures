@@ -1,5 +1,15 @@
 public class MyLinkedList
     {
+         public class Node
+        {
+            public int Value;
+
+            public Node next;
+            public Node(int value)
+            {
+                Value = value;
+            }   
+        }
         public Node head { get; set; }
 
         /** Initialize your data structure here. */
@@ -68,38 +78,54 @@ public class MyLinkedList
         }
 
         /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
-        public void AddAtIndex(int index, int val)
+         public void AddAtIndex(int index, int val)
         {
-            if (index < 0)
+            index = index < 0 ? 0 : index; 
+            if (head == null && index == 0)
             {
-                index = 0; 
-            }
-            if (head == null)
-            {
-                head = new Node(val);
+                var node = new Node(val);
+                head = node;
+
             }
             else
             {
-                Node iterate = head;
-                Node currentNode = head;
-                int count = 0;
-                while (count < index && iterate != null)
+                if (head != null)
                 {
-                    currentNode = iterate;
-                    iterate = iterate.next;
-                    count++;
+                        if (index == 0)
+                        {
+                            AddAtHead(val);
+                        }
+                        else
+                        {
+                            Node iterate = head;
+                            Node currentNode = head;
+                            int count = 0;
+                            while (count < index && iterate != null)
+                            {
+                                currentNode = iterate;
+                                iterate = iterate.next;
+                                count++;
+                            }
+                            currentNode.next = new Node(val);
+                            currentNode.next.next = iterate;
+                        }
+                       
+
+
                 }
-                currentNode.next = new Node(val);
-                currentNode.next.next = iterate;
             }
 
 
-        }
 
+        }
         /** Delete the index-th node in the linked list, if the index is valid. */
         public void DeleteAtIndex(int index)
         {
-            if (index >= 0)
+            if (index == 0 )
+            {
+                head = head.next;
+            }
+            else if (index > 0)
             {
                 Node currentNode = head;
                 Node iterate = head;
@@ -114,6 +140,10 @@ public class MyLinkedList
                 {
                     currentNode.next = iterate == null ? null : iterate.next;
                 }
+            }
+            else
+            {
+                
             }
             
         }
