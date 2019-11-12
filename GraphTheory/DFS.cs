@@ -17,11 +17,11 @@ public class DFS<T>
 	private IEnumerable<Vertex<T>> DepthFirstSearch(Vertex<T> vertex, HashSet<Vertex<T>> visited)
     	{
         	if (visited.Contains(vertex))
-            	yield break;
+            		yield break;
         	visited.Add(vertex);
 	        yield return vertex;
         	foreach (Vertex<T> neighbor in vertex.Neighbors.SelectMany(n => DepthFirstSearch(n, visited)))
-            	yield return neighbor;
+            		yield return neighbor;
     	}
 	
 }
